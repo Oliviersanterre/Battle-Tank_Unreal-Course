@@ -28,6 +28,8 @@ public:
 private:
 	APawn* Tank = nullptr;
 	void AimTowardCrosshair();
+
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
 	
 	
 };
