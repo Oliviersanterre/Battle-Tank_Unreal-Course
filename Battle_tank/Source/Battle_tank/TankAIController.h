@@ -22,6 +22,8 @@ public:
 
 	virtual void BeginPlay() override;
 
+	
+
 private:
 
 	APawn* ControlledTank = nullptr;
