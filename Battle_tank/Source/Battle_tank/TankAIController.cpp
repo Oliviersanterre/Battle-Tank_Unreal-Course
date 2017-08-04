@@ -7,11 +7,15 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-
-	ControlledTank = GetControlledTank();
-
-	PlayerTank = GetPlayerTank();
 	
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	AimTowardPlayer();
+
 }
 
 
@@ -23,5 +27,11 @@ ATank* ATankAIController::GetControlledTank() const
 ATank* ATankAIController::GetPlayerTank() const
 {
 	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+}
+
+void ATankAIController::AimTowardPlayer() const
+{
+	FVector PlayerLocation = GetPlayerTank()->GetActorLocation();
+	GetControlledTank()->AimAt(PlayerLocation);
 }
 

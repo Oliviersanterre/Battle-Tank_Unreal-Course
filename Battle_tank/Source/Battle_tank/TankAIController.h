@@ -22,7 +22,9 @@ public:
 
 	virtual void BeginPlay() override;
 
-	
+	void AimTowardPlayer() const;
+
+	virtual void Tick(float DeltaTime) override;
 
 private:
 
