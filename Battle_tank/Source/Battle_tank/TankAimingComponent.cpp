@@ -1,6 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
+
 
 
 
@@ -35,8 +38,9 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Ca se rend là"));
 	if (!Barrel) { return; }
-
+	UE_LOG(LogTemp, Warning, TEXT("Ca se rend là aussi"));
 	FVector OutLauchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
 
@@ -57,7 +61,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -68,8 +72,8 @@ void UTankAimingComponent::MooveBarrelTowards(FVector AimDirection)
 	//Get Barrel rotation
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
-	auto DeltaRotator = AimAsRotator - BarrelRotator;
-	UE_LOG(LogTemp, Warning, TEXT("Aim as rotator : %s, BarrelRotator : %s"), *AimAsRotator.ToString(), *BarrelRotator.ToString())
+	auto DeltaRotator = AimAsRotator - BarrelRotator; 
+	Barrel->Elevate(5);
 	//if Aim Direction is different than Barrel rotation
 	//rotate Barrel to the same direction as AimDirection
 }
