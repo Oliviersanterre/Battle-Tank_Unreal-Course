@@ -25,6 +25,10 @@ protected:
 	virtual void BeginPlay() override;
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+private:
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float LaunchSpeed = 10000;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

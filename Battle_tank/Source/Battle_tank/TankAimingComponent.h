@@ -4,6 +4,8 @@
 
 
 #include "CoreMinimal.h"
+#include "Classes/Components/SceneComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
@@ -16,7 +18,7 @@ class BATTLE_TANK_API UTankAimingComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
-	void AimAt(FVector HitLocation);
+	void AimAt(FVector HitLocation, float LaunchSpeed);
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
@@ -31,5 +33,7 @@ public:
 
 private:
 	UStaticMeshComponent* Barrel = nullptr;
+	void MooveBarrelTowards(FVector AimDirection);
+
 	
 };
