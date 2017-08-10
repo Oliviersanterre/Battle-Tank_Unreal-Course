@@ -8,6 +8,8 @@
 #include "Tank.generated.h"
 
 class UTankAimingComponent;
+class AProjectile;
+class UTankBarrel;
 
 UCLASS()
 class BATTLE_TANK_API ATank : public APawn
@@ -25,6 +27,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+		void Fire();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -33,6 +38,11 @@ protected:
 private:
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UTankBarrel* Barrel = nullptr; //local barrel reference (j'comprends moyen pourquoi(
 
 public:	
 
